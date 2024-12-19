@@ -1,1 +1,4 @@
-all: gcc -o ./build/game
+all: final
+
+final:
+	gcc -o ./build/game ./src/main.c
