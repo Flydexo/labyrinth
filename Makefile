@@ -1,0 +1,1 @@
+all: gcc -o ./build/game
