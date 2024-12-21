@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "chained.h": "c",
+        "types.h": "c",
+        "math.h": "c",
+        "associative.h": "c"
+    }
+}

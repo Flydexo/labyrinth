@@ -1,0 +1,1 @@
+int pow_mod(int x, int n, int mod);
