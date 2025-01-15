@@ -19,3 +19,4 @@ git commit -m "ajout de set_left"
 git push // envoie le code à github
 git pull
 git status
+git checkout -b mabranche
