@@ -20,3 +20,6 @@ git push // envoie le code à github
 git pull
 git status
 git checkout -b mabranche
+git checkout -b nom_branche // créé branche
+git checkout nom_branche // change de branche
+git push -u origin nom_branche // push depuis une nouvelle branche
