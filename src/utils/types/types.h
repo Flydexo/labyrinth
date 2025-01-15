@@ -3,18 +3,18 @@ typedef struct Coords {
     int y;
 } Coords;
 
+typedef enum Direction { LEFT, RIGHT, UP, DOWN } Direction;
+
 typedef struct Room {
     int seed;
     Coords coords;
-    Sides sides;
-    Metadata metadata;
+    struct Room* left;
+    struct Room* right;
+    struct Room* up;
+    struct Room* down;
 } Room;
 
-typedef struct Sides {
-    Room* up;
-    Room* right;
-    Room* down;
-    Room* left;
-} Sides;
-
-typedef struct Metadata {} Metadata;
+typedef struct Engine {
+    Coords player;
+    Room* current_room;
+} Engine;
