@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "room.h"
 
-typedef struct Room { int x; int y; Room* left; Room* right; Room* up; Room* down } Room;
+typedef struct Room { int x; int y; int seed; Room* left; Room* right; Room* up; Room* down } Room;
 
 Room* create_room(int x, int y) {
     Room* room = malloc(sizeof(Room));
