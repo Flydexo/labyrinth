@@ -2,10 +2,9 @@
 #include "../utils/types/types.h"
 #include "room.h"
 
-Room* create_room(int x, int y, int seed) {
+Room* create_room(Coords coords, int seed) {
     Room* room = malloc(sizeof(Room));
-    room->coords.x = x;
-    room->coords.y = y;
+    room->coords = coords;
     room->seed = seed;
     room->left = NULL;
     room->right = NULL;
@@ -14,7 +13,7 @@ Room* create_room(int x, int y, int seed) {
     return room;
 }
 
-Room* get_neighbour(Room* room, Direction direction) {
+Room* get_neighbour_room(Room* room, Direction direction) {
     switch (direction) {
         case LEFT:
             return room->left;
@@ -25,6 +24,30 @@ Room* get_neighbour(Room* room, Direction direction) {
         case DOWN:
             return room->down;
     }
+    return NULL;
+}
+
+Coords get_neighbour_room_coords(Room* room, Direction direction) {
+    Coords coords;
+    switch (direction) {
+        case LEFT:
+            coords.x = room->coords.x - 1;
+            coords.y = room->coords.y;
+            break;
+        case RIGHT:
+            coords.x = room->coords.x + 1;
+            coords.y = room->coords.y;
+            break;
+        case UP:
+            coords.x = room->coords.x;
+            coords.y = room->coords.y + 1;
+            break;
+        case DOWN:
+            coords.x = room->coords.x;
+            coords.y = room->coords.y - 1;
+            break;
+    }
+    return coords;
 }
 
 Room* link_room(Room* room1, Room* room2, Direction direction) {

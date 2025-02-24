@@ -17,4 +17,5 @@ typedef struct Room {
 typedef struct Engine {
     Coords player;
     Room* current_room;
+    Hashtable* rooms;
 } Engine;
