@@ -3,6 +3,7 @@ typedef struct Coords {
     int y;
 } Coords;
 
+<<<<<<< Updated upstream
 typedef enum Direction { LEFT, RIGHT, UP, DOWN } Direction;
 
 typedef struct Room {
@@ -19,3 +20,24 @@ typedef struct Engine {
     Room* current_room;
     Hashtable* rooms;
 } Engine;
+=======
+typedef struct Metadata {} Metadata;
+
+typedef struct Room Room;
+
+typedef struct Sides Sides;
+
+struct Room {
+    int seed;
+    Coords coords;
+    Sides* sides;
+    Metadata metadata;
+};
+
+struct Sides {
+    Room* up;
+    Room* right;
+    Room* down;
+    Room* left;
+};
+>>>>>>> Stashed changes

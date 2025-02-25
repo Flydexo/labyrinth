@@ -7,16 +7,21 @@
 #include "../dynarray/dynarray.h"
 
 typedef Value* Hashtable;
-typedef Coords Key;
-typedef Room Value;
 
+<<<<<<< Updated upstream
 Hashtable* create_hashtable() {
     Hashtable* table = dyn_create();
     return table;
+=======
+Hashtable* create() {
+    Hashtable table = dyn_create();
+    return &table;
+>>>>>>> Stashed changes
 }
 
 int hash(Hashtable* table, Key key) {
-    return pow_mod(2, key.x, dyn_size(table))*pow_mod(3,key.y,dyn_size(table)) % size();
+    Key k = *(Key*)k;
+    return pow_mod(2, k.x, dyn_size(table))*pow_mod(3,k.y,dyn_size(table)) % size();
 }
 
 bool has_hashtable(Hashtable* table, Key key) {

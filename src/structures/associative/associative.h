@@ -1,12 +1,12 @@
 #include <stdbool.h>
 
-typedef Key;
-typedef Value;
+typedef void* Key;
+typedef void* Value;
 typedef struct Couple {
     Key key;
     Value value;
 } Couple;
-typedef List;
+typedef Couple* List;
 
 List assol_create();
 

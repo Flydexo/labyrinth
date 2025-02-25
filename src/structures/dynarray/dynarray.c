@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "../associative/associative.h"
 #include <stdio.h>
+#include <assert.h>
 #define INIT_SIZE 1000
 
 typedef List Element;

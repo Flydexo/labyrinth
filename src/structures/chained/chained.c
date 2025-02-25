@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "../../utils/types/types.h"
+#include <stdbool.h>
 
 typedef void* Value;
 typedef struct Cell {
@@ -25,4 +26,8 @@ Value head(List list) {
 
 List tail(List list) {
     return list->next;
+}
+
+bool is_empty(List list) {
+    return list == NULL;
 }

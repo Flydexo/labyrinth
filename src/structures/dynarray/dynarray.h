@@ -1,5 +1,5 @@
-typedef DynArray;
-typedef Element;
+typedef void* DynArray;
+typedef void* Element;
 
 DynArray* dyn_create();
 void dyn_set(DynArray*, int, Element);
