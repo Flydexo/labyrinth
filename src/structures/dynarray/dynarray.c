@@ -1,16 +1,11 @@
+#ifndef DYNARRAY_H
+#define DYNARRAY_H
 #include <stdlib.h>
 #include "../associative/associative.h"
 #include <stdio.h>
 #include <assert.h>
 #define INIT_SIZE 1000
-
-typedef List Element;
-typedef Element* Array;
-typedef struct DynArray {
-    int length;
-    int max_length;
-    Array array;
-} DynArray;
+#include "./dynarray.h"
 
 DynArray* dyn_create() {
     DynArray* dyn_array = malloc(sizeof(DynArray));
@@ -78,3 +73,4 @@ Element dyn_pop(DynArray* dyn_array, void (*reindex)(DynArray*)) {
 int dyn_size(DynArray* dyn_array) {
     return dyn_array->max_length;
 }
+#endif

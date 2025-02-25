@@ -1,15 +1,21 @@
+#ifndef CHAINED_H
+#define CHAINED_H
 #include <stdbool.h>
 
 typedef void* Value;
-typedef void* Cell;
-typedef Cell* List;
+typedef struct Cell {
+    Value value;
+    struct Cell* next;
+} Cell;
+typedef Cell* CList;
 
-List chained_create();
+CList chained_create();
 
-void chained_append(List, Value);
+Cell* chained_append(CList, Value);
 
-Value chained_head(List);
+Value chained_head(CList);
 
-List chained_tail(List);
+CList chained_tail(CList);
 
-bool is_empty(List);
+bool chained_is_empty(CList);
+#endif

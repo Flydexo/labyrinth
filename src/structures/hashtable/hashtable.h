@@ -1,10 +1,16 @@
+#ifndef HASHTABLE_H
+#define HASHTABLE_H
 #include <stdbool.h>
 
-typedef Hashtable;
-typedef Key;
-typedef Value;
+typedef void* HKey;
+typedef void* HValue;
+typedef struct {
+    HValue* table;
+    int (*hash)(HValue* table, HKey key);
+} Hashtable;
 
-Hashtable* create_hashtable();
-bool has_hashtable(Hashtable* table, Key key);
-Value get_hashtable(Hashtable* table, Key key);
-void set_hashtable(Hashtable* table, Key key, Value value);
+Hashtable* create_hashtable(int (*hash)(HValue* table, HKey key));
+bool has_hashtable(Hashtable* table, HKey key);
+HValue get_hashtable(Hashtable* table, HKey key);
+void set_hashtable(Hashtable* table, HKey key, HValue value);
+#endif

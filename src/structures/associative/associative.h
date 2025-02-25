@@ -1,19 +1,24 @@
-#include <stdbool.h>
+#ifndef ASSOCIATIVE_H
+#define ASSOCIATIVE_H
 
-typedef void* Key;
-typedef void* Value;
+#include <stdbool.h>
+#include "../../utils/types/types.h"
+#include "../chained/chained.h"
+
+typedef Coords Key;
+typedef void* AValue;
 typedef struct Couple {
     Key key;
-    Value value;
+    AValue value;
 } Couple;
-typedef Couple* List;
 
-List assol_create();
+CList assol_create();
 
-void assol_append(List, Key, Value);
+void assol_append(CList, Key, AValue);
 
-void assol_append_unique(List, Key, Value);
+void assol_append_unique(CList, Key, AValue);
 
-bool assol_has(List, Key);
+bool assol_has(CList, Key);
 
-Value assol_get(List, Key);
+AValue assol_get(CList, Key);
+#endif

@@ -1,33 +1,27 @@
 #include <stdlib.h>
 #include "../../utils/types/types.h"
 #include <stdbool.h>
+#include "chained.h"
 
-typedef void* Value;
-typedef struct Cell {
-    Value value;
-    Cell* next;
-} Cell;
-typedef Cell* List;
-
-List create() {
+CList chained_create() {
     return NULL;
 }
 
-void append(List list, Value value) {
+Cell* chained_append(CList list, Value value) {
     Cell* cell = malloc(sizeof(Cell));
     cell->value = value;
     cell->next = list;
     return cell;
 }
 
-Value head(List list) {
+Value chained_head(CList list) {
     return list->value;
 }
 
-List tail(List list) {
+CList chained_tail(CList list) {
     return list->next;
 }
 
-bool is_empty(List list) {
+bool chained_is_empty(CList list) {
     return list == NULL;
 }

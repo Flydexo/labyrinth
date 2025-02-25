@@ -3,6 +3,11 @@
         "chained.h": "c",
         "types.h": "c",
         "math.h": "c",
-        "associative.h": "c"
+        "associative.h": "c",
+        "stdio.h": "c",
+        "dynarray.h": "c",
+        "stdlib.h": "c",
+        "room.h": "c",
+        "hashtable.h": "c"
     }
 }
