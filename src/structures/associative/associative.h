@@ -14,5 +14,8 @@ void assol_append_unique(CList, Key, AValue);
 
 bool assol_has(CList, Key);
 
+CList assol_delete(CList, Key);
+
 AValue assol_get(CList, Key);
+
 #endif

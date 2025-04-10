@@ -13,6 +13,14 @@ DynArray* dyn_create() {
     return dyn_array;
 }
 
+void dyn_set(DynArray* dyn_array, int i, Element elt) {
+    if(dyn_array->max_length <= i) {
+        fprintf(stderr, "Invalid out of bounds for dynamic array\n");
+        assert(0);
+    }
+    dyn_array->array[i] = elt;
+}
+
 void resize(DynArray* dyn_array) {
     Array new_array = malloc(sizeof(Element)*dyn_array->max_length*2);
     dyn_array->max_length = dyn_array->max_length*2;

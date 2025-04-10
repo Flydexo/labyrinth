@@ -19,7 +19,8 @@ Hashtable* create_hashtable(int (*hash)(Hashtable* table, HKey key)) {
 bool has_hashtable(Hashtable* table, HKey key) {
     int hashed_key = table->hash(table, key);
     CList l = dyn_nth(table->table, hashed_key);
-    if(l == NULL) return false;
+    printf("List is null %d\n", l == NULL);
+    if (l == NULL) return false;
     return assol_has(l, key);
 }
 
@@ -34,7 +35,6 @@ HValue get_hashtable(Hashtable* table, HKey key) {
 
 void set_hashtable(Hashtable* table, HKey key, HValue value) {
     int i = table->hash(table, key);
-    fflush(stdout);
     CList list = dyn_nth(table->table, i);
     if(chained_is_empty(list)) {
         CList l = assol_create();
@@ -43,6 +43,16 @@ void set_hashtable(Hashtable* table, HKey key, HValue value) {
     }else {
         assol_append_unique(list, key, value);
     }
+}
+
+void delete_hashtable(Hashtable* table, HKey key) {
+    if(!has_hashtable(table, key)) {
+        fprintf(stderr, "Key not found in hashtable when trying to delete");
+        assert(0);
+    }
+    int hashed_key = table->hash(table, key);
+    CList list = dyn_nth(table->table, hashed_key);
+    dyn_set(table->table, hashed_key, assol_delete(list, key));
 }
 
 void hashtable_stats(Hashtable* table) {

@@ -34,9 +34,10 @@ Engine* create_engine() {
     Engine* engine = malloc(sizeof(Engine));
     engine->player.x = 0;
     engine->player.y = 0;
-    Coords coords = {10000,10000};
+    Coords coords = {0,0};
     engine->current_room = create_room(coords, 0);
     engine->rooms = create_hashtable(hash);
+    set_hashtable(engine->rooms, &coords, engine->current_room);
     return engine;
 }
 
@@ -67,10 +68,11 @@ void move_room(Engine* engine,Direction direction) {
 
 void teleport_room(Engine* engine, Coords coords) {
     if(has_hashtable(engine->rooms, &coords)) {
-       engine->current_room = get_hashtable(engine->rooms, &coords); 
+        engine->current_room = get_hashtable(engine->rooms, &coords); 
     }else {
         int r = rand();
         engine->current_room = create_room(coords, r - (r%10));
+        set_hashtable(engine->rooms, &coords, engine->current_room);
     }
 }
 

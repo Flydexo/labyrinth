@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "../../utils/types/types.h"
 #include "room.h"
+#include <stdio.h>
+#include <limits.h>
 
 
 Room* create_room(Coords coords, int seed) {
@@ -35,19 +37,23 @@ Coords get_neighbour_room_coords(Room* room, Direction direction) {
     switch (direction) {
         case LEFT:
             coords.x = room->coords.x - 1;
+            if (coords.x == -1) coords.x = INT_MAX;
             coords.y = room->coords.y;
             break;
         case RIGHT:
             coords.x = room->coords.x + 1;
+            if (coords.x == INT_MIN) coords.x = 0;
             coords.y = room->coords.y;
             break;
         case UP:
             coords.x = room->coords.x;
             coords.y = room->coords.y + 1;
+            if (coords.y == INT_MIN) coords.y = 0;
             break;
         case DOWN:
             coords.x = room->coords.x;
             coords.y = room->coords.y - 1;
+            if (coords.y == -1) coords.y = INT_MAX;
             break;
     }
     return coords;
