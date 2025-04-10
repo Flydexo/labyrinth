@@ -1,8 +1,6 @@
 #ifndef ROOM_H
 #define ROOM_H
-
-struct Room;
-
+#include "../../utils/types/types.h"
 typedef enum {
     LEFT,
     UP,

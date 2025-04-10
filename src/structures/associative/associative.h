@@ -5,7 +5,7 @@
 #include "../../utils/types/types.h"
 #include "../chained/chained.h"
 
-typedef Coords Key;
+typedef Coords* Key;
 typedef void* AValue;
 typedef struct Couple {
     Key key;

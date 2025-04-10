@@ -2,10 +2,13 @@
 #include "../../utils/types/types.h"
 #include "room.h"
 
+
 Room* create_room(Coords coords, int seed) {
     Room* room = malloc(sizeof(Room));
+    Sides* sides = malloc(sizeof(Sides));
     room->coords = coords;
     room->seed = seed;
+    room->sides = sides;
     room->sides->left = NULL;
     room->sides->right = NULL;
     room->sides->up = NULL;

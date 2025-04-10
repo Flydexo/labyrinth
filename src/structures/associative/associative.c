@@ -20,8 +20,14 @@ void assol_append(CList list, Key key, Value value) {
 bool assol_has(CList list, Key key) {
     if(chained_is_empty(list)) return false;
     Couple* l = *(Couple**)list;
-    if(l->key.x == key.x && l->key.y == key.y) return true;
-    else return assol_has(chained_tail(list), key);
+    printf("couple %p\n", l->key);
+    fflush(stdout);
+    if(l->key->x == key->x && l->key->y == key->y) return true;
+    else {
+        printf("else\n");
+        fflush(stdout);
+        return assol_has(chained_tail(list), key);
+    }
 }
 
 Value assol_get(CList list, Key key) {
@@ -30,7 +36,7 @@ Value assol_get(CList list, Key key) {
         assert(0);
     } 
     Couple* l = *(Couple**)list;
-    if(l->key.x == key.x && l->key.y == key.y) return l->value;
+    if(l->key->x == key->x && l->key->y == key->y) return l->value;
     return assol_get(chained_tail(list), key);
 }
 

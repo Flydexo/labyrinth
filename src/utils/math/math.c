@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int pow_mod(int x, int n, int mod) {
     if(n == 0) {
@@ -8,7 +9,7 @@ int pow_mod(int x, int n, int mod) {
         return x;
     }
     if(n%2 == 0) {
-        return pow_mod(x*x, n/2, mod);
+        return pow_mod(x*x, n/2, mod) % mod;
     }
-    return x*pow_mod(x*x, (n-1)/2, mod);
+    return (x % mod)*(pow_mod(x*x, (n-1)/2, mod) % mod) % mod;
 }
