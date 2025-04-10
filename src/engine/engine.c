@@ -21,6 +21,7 @@
 #include <ctype.h>
 #include "../utils/types/types.h"
 #include "../structures/room/room.h"
+#include <limits.h>
 #include "../structures/hashtable/hashtable.h"
 
 int hash(Hashtable* table, HKey key) {
@@ -33,11 +34,9 @@ Engine* create_engine() {
     Engine* engine = malloc(sizeof(Engine));
     engine->player.x = 0;
     engine->player.y = 0;
-    Coords coords = {0,0};
+    Coords coords = {10000,10000};
     engine->current_room = create_room(coords, 0);
     engine->rooms = create_hashtable(hash);
-    printf("Engine created!!\n");
-    fflush(stdout);
     return engine;
 }
 
@@ -52,11 +51,7 @@ void move_room(Engine* engine,Direction direction) {
         if (has_hashtable(engine->rooms, &new_coords)) {
             new_room = get_hashtable(engine->rooms, &new_coords);
         } else {
-            printf("before create room");
-            fflush(stdout);
             new_room = create_room(new_coords, rand());
-            printf("before hashtable\n");
-            fflush(stdout);
             set_hashtable(engine->rooms, &new_coords, new_room);
         }
         
@@ -68,6 +63,15 @@ void move_room(Engine* engine,Direction direction) {
 
     // update player coords
 
+}
+
+void teleport_room(Engine* engine, Coords coords) {
+    if(has_hashtable(engine->rooms, &coords)) {
+       engine->current_room = get_hashtable(engine->rooms, &coords); 
+    }else {
+        int r = rand();
+        engine->current_room = create_room(coords, r - (r%10));
+    }
 }
 
 int getch() {
@@ -134,6 +138,21 @@ int main() {
             display_room(engine->current_room);
         } else if(choice == 'a') {
             hashtable_stats(engine->rooms);
+        }else if(choice == 'p' && engine->current_room->seed % 10 == 0) {
+            int x = INT_MAX-engine->current_room->coords.x;
+            int y = INT_MAX-engine->current_room->coords.y; 
+            Coords coords;
+            coords.x = x;
+            coords.y = y;
+            teleport_room(engine, coords);
+            display_room(engine->current_room);
+        }else if(choice == 'b') {
+            while(1) {
+                int room_to_break = getch();
+                if(room_to_break == 'j') {
+                    
+                }
+            }
         }
     }
     

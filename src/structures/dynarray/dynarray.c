@@ -2,7 +2,7 @@
 #include "../associative/associative.h"
 #include <stdio.h>
 #include <assert.h>
-#define INIT_SIZE 10
+#define INIT_SIZE 100000
 #include "./dynarray.h"
 
 DynArray* dyn_create() {

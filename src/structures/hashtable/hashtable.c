@@ -18,9 +18,7 @@ Hashtable* create_hashtable(int (*hash)(Hashtable* table, HKey key)) {
 
 bool has_hashtable(Hashtable* table, HKey key) {
     int hashed_key = table->hash(table, key);
-    printf("getting key: %d\n", hashed_key);
     CList l = dyn_nth(table->table, hashed_key);
-    printf("list %p\n", l);
     if(l == NULL) return false;
     return assol_has(l, key);
 }
@@ -36,13 +34,15 @@ HValue get_hashtable(Hashtable* table, HKey key) {
 
 void set_hashtable(Hashtable* table, HKey key, HValue value) {
     int i = table->hash(table, key);
-    printf("index: %d\n", i);
     fflush(stdout);
     CList list = dyn_nth(table->table, i);
     if(chained_is_empty(list)) {
-        dyn_append(table->table, i, value, NULL);
+        CList l = assol_create();
+        assol_append(l, key, value);
+        dyn_append(table->table, i, l, NULL);
+    }else {
+        assol_append_unique(list, key, value);
     }
-    assol_append_unique(list, key, value);
 }
 
 void hashtable_stats(Hashtable* table) {
