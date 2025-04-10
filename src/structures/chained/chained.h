@@ -1,8 +1,14 @@
 #ifndef CHAINED_H
 #define CHAINED_H
 #include <stdbool.h>
+#include "../../utils/types/types.h"
 
-typedef void* Value;
+typedef Coords* Key;
+typedef struct Couple {
+    Key key;
+    void* value;
+} Couple;
+typedef Couple* Value;
 typedef struct Cell {
     Value value;
     struct Cell* next;

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -std=c99 -g
 SRC = $(shell find src -name '*.c')
 OBJ = $(SRC:.c=.o)
 TARGET = game

@@ -1,6 +1,6 @@
-#ifndef DISPLAY_H
-#define DISPLAY_H
+#ifndef DISPLAY_DISPLAY_H
+#define DISPLAY_DISPLAY_H
+#include "../utils/types/types.h"
 
-char* generate_room_display(int seed, int width, int height);
-
+void display_room(Room* room);
 #endif

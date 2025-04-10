@@ -5,13 +5,7 @@
 #include "../../utils/types/types.h"
 #include "../chained/chained.h"
 
-typedef Coords Key;
 typedef void* AValue;
-typedef struct Couple {
-    Key key;
-    AValue value;
-} Couple;
-
 CList assol_create();
 
 void assol_append(CList, Key, AValue);

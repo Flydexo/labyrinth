@@ -1,10 +1,8 @@
-#ifndef DYNARRAY_H
-#define DYNARRAY_H
 #include <stdlib.h>
 #include "../associative/associative.h"
 #include <stdio.h>
 #include <assert.h>
-#define INIT_SIZE 1000
+#define INIT_SIZE 100000
 #include "./dynarray.h"
 
 DynArray* dyn_create() {
@@ -26,9 +24,11 @@ void resize(DynArray* dyn_array) {
 }
 
 void dyn_append(DynArray* dyn_array, int i, Element elt, void (*reindex)(DynArray*)) {
-    if(dyn_array->array[i] != NULL) {
+    if(dyn_array->array[i] == NULL) {
         dyn_array->length = dyn_array->length+1;
         if(dyn_array->length > dyn_array->max_length) {
+            printf("RESIZE!!!!!!!!");
+            assert(0);
             resize(dyn_array);
             if(reindex != NULL) reindex(dyn_array);
         }
@@ -38,8 +38,8 @@ void dyn_append(DynArray* dyn_array, int i, Element elt, void (*reindex)(DynArra
 }
 
 Element dyn_nth(DynArray* dyn_array, int i) {
-    if(dyn_array->length <= i) {
-        fprintf(stderr, "Invalid out of bounds for dynamic array");
+    if(dyn_array->max_length <= i) {
+        fprintf(stderr, "Invalid out of bounds for dynamic array\n");
         assert(0);
     }
     return dyn_array->array[i];
@@ -73,4 +73,3 @@ Element dyn_pop(DynArray* dyn_array, void (*reindex)(DynArray*)) {
 int dyn_size(DynArray* dyn_array) {
     return dyn_array->max_length;
 }
-#endif
