@@ -19,9 +19,18 @@ Hashtable* create_hashtable(int (*hash)(Hashtable* table, HKey key)) {
 bool has_hashtable(Hashtable* table, HKey key) {
     int hashed_key = table->hash(table, key);
     CList l = dyn_nth(table->table, hashed_key);
-    printf("List is null %d\n", l == NULL);
     if (l == NULL) return false;
-    return assol_has(l, key);
+    bool found = assol_has(l, key);
+    if(found) {
+        Coords *k = (Coords *)key;
+        printf("Found (x:%d,y:%d)\n", k->x, k->y);
+    }
+    else{
+        Coords *k = (Coords *)key;
+        printf("Did not Found (x:%d,y:%d)\n", k->x, k->y);
+
+    }
+    return found;
 }
 
 HValue get_hashtable(Hashtable* table, HKey key) {
@@ -34,14 +43,16 @@ HValue get_hashtable(Hashtable* table, HKey key) {
 }
 
 void set_hashtable(Hashtable* table, HKey key, HValue value) {
+    Coords *coords = (Coords *)key;
+    printf("Added new room into hashtable (x:%d,y:%d)\n", coords->x,coords->y);
     int i = table->hash(table, key);
     CList list = dyn_nth(table->table, i);
     if(chained_is_empty(list)) {
-        CList l = assol_create();
-        assol_append(l, key, value);
+        CList l = assol_append(assol_create(), key, value);
         dyn_append(table->table, i, l, NULL);
     }else {
-        assol_append_unique(list, key, value);
+        CList l = assol_append_unique(list, key, value);
+        dyn_append(table->table, i, l, NULL);
     }
 }
 

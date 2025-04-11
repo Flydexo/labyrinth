@@ -8,9 +8,9 @@
 typedef void* AValue;
 CList assol_create();
 
-void assol_append(CList, Key, AValue);
+CList assol_append(CList, Key, AValue);
 
-void assol_append_unique(CList, Key, AValue);
+CList assol_append_unique(CList, Key, AValue);
 
 bool assol_has(CList, Key);
 

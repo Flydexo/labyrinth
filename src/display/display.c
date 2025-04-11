@@ -3,7 +3,7 @@
 #include "../structures/room/room.h"
 
 void display_commands() {
-    printf("Commands: up: [k], down: [j], left: [h], right: [l]\n");
+    printf("\n\n\nCommands: up: [k], down: [j], left: [h], right: [l]\n\n\n\n");
 }
 void display_room(Room* room) {
     printf("Room: (%d,%d)\n", room->coords.x, room->coords.y);

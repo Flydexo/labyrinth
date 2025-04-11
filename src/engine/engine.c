@@ -53,6 +53,7 @@ void move_room(Engine* engine,Direction direction) {
             new_room = get_hashtable(engine->rooms, &new_coords);
         } else {
             new_room = create_room(new_coords, rand());
+            printf("Creating with move\n");
             set_hashtable(engine->rooms, &new_coords, new_room);
         }
         
@@ -72,6 +73,7 @@ void teleport_room(Engine* engine, Coords coords) {
     }else {
         int r = rand();
         engine->current_room = create_room(coords, r - (r%10));
+        printf("Creating with portal\n");
         set_hashtable(engine->rooms, &coords, engine->current_room);
     }
 }

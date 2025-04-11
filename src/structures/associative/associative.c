@@ -10,18 +10,16 @@ CList assol_create() {
     return chained_create();
 }
 
-void assol_append(CList list, Key key, AValue value) {
+CList assol_append(CList list, Key key, AValue value) {
     Couple* couple = malloc(sizeof(Couple));
     couple->key = key;
     couple->value = value;
-    chained_append(list, couple);
+    return chained_append(list, couple);
 }
 
 bool assol_has(CList list, Key key) {
     if(chained_is_empty(list)) return false;
     Couple* l = *(Couple**)list;
-    printf("assol_has: %d %d\n", l->key->x, l->key->y);
-    printf("key: %d %d\n", key->x, key->y);
     if(l->key->x == key->x && l->key->y == key->y) return true;
     else {
         return assol_has(chained_tail(list), key);
@@ -52,8 +50,10 @@ CList assol_delete(CList list, Key key) {
     }
 }
 
-void assol_append_unique(CList list, Key key, AValue value) {
+CList assol_append_unique(CList list, Key key, AValue value) {
     if(!assol_has(list, key)) {
-       assol_append(list, key, value);
+       return assol_append(list, key, value);
+    }else {
+        return list;
     }
 }
